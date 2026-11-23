@@ -1,0 +1,42 @@
+node_modules/
+dist/
+*.log
+.npm-cache/
+.tmp/
+*.tsbuildinfo
+
+# Fichiers d'environnement et identifiants locaux
+.env
+.env.*
+*.pem
+*.key
+*.p8
+*.p12
+*.pfx
+*.jks
+*.keystore
+*.kdbx
+credentials.json
+*.credentials.json
+service-account*.json
+.aws/
+.ssh/
+
+# Fichiers temporaires et bases locales
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+*.sqlite
+*.sqlite3
+*.db
+.DS_Store
+Thumbs.db
+
+# Documents de besoins internes : a examiner avant partage
+caier des charges planning d'audit.docx
+cdc version text .txt
+GUIDE.txt
+REGLES_DE_GESTION.md
+Recensement-regles-gestion.md

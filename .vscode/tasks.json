@@ -1,0 +1,59 @@
+{
+  "version": "2.0.0",
+  "options": {
+    "cwd": "${workspaceFolder}",
+    "env": {
+      "npm_config_cache": "${workspaceFolder}\\.npm-cache",
+      "npm_config_update_notifier": "false",
+      "TEMP": "${workspaceFolder}\\.tmp",
+      "TMP": "${workspaceFolder}\\.tmp"
+    }
+  },
+  "tasks": [
+    {
+      "label": "DIAMS : installer les dépendances",
+      "type": "shell",
+      "command": "npm",
+      "args": ["install", "--ignore-scripts", "--no-audit", "--no-fund"],
+      "problemMatcher": []
+    },
+    {
+      "label": "DIAMS : vérifier les tests",
+      "type": "shell",
+      "command": "npm",
+      "args": ["test"],
+      "group": "test",
+      "problemMatcher": []
+    },
+    {
+      "label": "DIAMS : compiler la maquette",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "build"],
+      "group": "build",
+      "problemMatcher": ["$tsc"]
+    },
+    {
+      "label": "DIAMS : lancer la maquette",
+      "type": "shell",
+      "command": "npm",
+      "args": ["run", "dev"],
+      "isBackground": true,
+      "problemMatcher": {
+        "owner": "vite",
+        "pattern": {
+          "regexp": "^(.*):(\\d+):(\\d+): (.*)$",
+          "file": 1,
+          "line": 2,
+          "column": 3,
+          "message": 4
+        },
+        "background": {
+          "activeOnStart": true,
+          "beginsPattern": "VITE",
+          "endsPattern": "Local:.*127\\.0\\.0\\.1"
+        }
+      }
+    }
+  ]
+}
