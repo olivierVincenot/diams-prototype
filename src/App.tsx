@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 
 import { useEffect, useRef, useState } from 'react';
-import { Activity, ArrowRight, ArrowRightLeft, Building2, CheckCircle2, ChevronRight, CircleHelp, ClipboardList, Database, Diamond, Download, FileCheck2, FileText, History, Home, LayoutGrid, LockKeyhole, Network, RotateCcw, Search, Settings2, ShieldCheck, Sparkles, Wrench, X, type LucideIcon } from 'lucide-react';
+import { Activity, ArrowRight, ArrowRightLeft, Building2, CheckCircle2, ChevronRight, CircleHelp, ClipboardList, Database, Diamond, Download, FileCheck2, FileText, Gem, History, Home, LayoutGrid, LockKeyhole, Network, RotateCcw, Search, Settings2, ShieldCheck, Sparkles, Wrench, X, type LucideIcon } from 'lucide-react';
 import type { Commit, EntityKind, Impact, Page, Store } from './types';
 import { alphabetic, matches } from './domain';
 import { createStore, loadStore, persistStore } from './storage';
@@ -94,7 +94,7 @@ export default function App() {
   const data = store.data;
   return <div className="app-shell">
     <aside className="sidebar">
-      <button className="brand" onClick={() => navigate('home')} aria-label="DIAMS Tools par UTAC, accueil"><img className="utac-logo" src={`${import.meta.env.BASE_URL}utac-logo.png`} alt="UTAC" /><span className="brand-product">DIAMS<span className="brand-tools">tools</span></span></button>
+      <button className="brand" onClick={() => navigate('home')} aria-label="DIAMS Factory par UTAC, accueil"><img className="utac-logo" src={`${import.meta.env.BASE_URL}utac-logo.png`} alt="UTAC" /><span className="brand-product">DIAMS <span className="brand-tools">Factory</span><Gem size={16} aria-hidden="true" /></span></button>
       <div className="workspace-label">ESPACE ADMINISTRATEUR</div>
       <nav aria-label="Navigation principale">
         <button className={`nav-item ${nav.page === 'home' ? 'active' : ''}`} onClick={() => navigate('home')}><LayoutGrid size={18} />Vue d’ensemble</button>
@@ -109,7 +109,7 @@ export default function App() {
       <div className="sidebar-bottom">
         <div className="sandbox-card"><span className="sandbox-icon"><Database size={18} /></span><strong>Un espace pour essayer</strong><p>Données d’exemple, liberté réelle.<br />Explorez sans toucher à la production.</p><Badge tone="amber">ENVIRONNEMENT DEV</Badge></div>
         <button className="nav-item help-link" onClick={() => setHelp(true)}><CircleHelp size={18} />Guide de la maquette<ChevronRight size={15} /></button>
-        <div className="sidebar-footer"><small>Certification<br />DIAMS Tools Web · v1.0</small></div>
+        <div className="sidebar-footer"><small>Certification<br />DIAMS Factory · v1.0</small></div>
       </div>
     </aside>
     <div className="main-shell">
@@ -129,7 +129,7 @@ export default function App() {
         {nav.page === 'history' && <Journal store={store} undo={undo} reset={reset} supportMode={supportMode} />}
         {nav.page === 'specifics' && <SpecificSettings data={data} commit={commit} confirm={setImpact} supportMode={supportMode} />}
         {nav.page === 'exports' && <Exports data={data} commit={commit} confirm={setImpact} supportMode={supportMode} />}
-        <footer className="main-footer"><span><Diamond size={13} />DIAMS Tools Web <span>·</span> Maquette fonctionnelle</span><span><span className="status-dot" />Stockage dans ce navigateur uniquement</span></footer>
+        <footer className="main-footer"><span><Diamond size={13} />DIAMS Factory <span>·</span> Maquette fonctionnelle</span><span><span className="status-dot" />Stockage dans ce navigateur uniquement</span></footer>
       </main>
     </div>
     {message && <Notification message={message} onClose={() => setMessage(null)} />}
@@ -189,7 +189,7 @@ function Dashboard({ store, navigate, search, setSearch }: { store: Store; navig
   return <>
     <div className="welcome-line"><span><span className="tiny-lime-line" />VOTRE ESPACE DE PARAMÉTRAGE</span><Badge tone="green">Environnement de démonstration</Badge></div>
     <section className="hero">
-      <div className="hero-content"><div className="eyebrow"><Sparkles size={14} />MOINS DE CLICS. PLUS DE CLARTÉ.</div><h1>Le paramétrage,<br /><span>simplement.</span></h1><p>Un espace unique pour organiser vos tâches, vos documents<br className="desktop-break" /> et vos données de certification. Vous gardez le contrôle.</p>
+      <div className="hero-content"><div className="eyebrow"><Sparkles size={14} />MOINS DE CLICS. PLUS DE CLARTÉ.</div><h1>DIAMS <span>Factory</span></h1><p>Un espace unique pour organiser vos tâches, vos documents<br className="desktop-break" /> et vos données de certification. Vous gardez le contrôle.</p>
         <div className="global-search"><Search size={20} /><input type="search" aria-label="Recherche globale" value={search} onChange={e => setSearch(e.target.value)} placeholder="Rechercher une tâche, une matrice, un document…" /><span className="search-key">Rechercher</span></div>
         {search && <div className="global-results"><div className="results-heading">{found.length} résultat(s) dans le jeu local</div>{found.slice(0, 12).map(r => <button key={r.id} onClick={() => navigate(r.page, r.name)}><Search size={14} /><span className="global-result-type">{r.type}</span><strong className="global-result-name">{r.name}</strong><ChevronRight size={15} /></button>)}{!found.length && <p>Aucun résultat pour cette recherche.</p>}{found.length > 12 && <p>Affinez la recherche pour afficher les autres résultats.</p>}</div>}
       </div>
