@@ -1,3 +1,5 @@
+/// <reference types="vite/client" />
+
 import { useEffect, useRef, useState } from 'react';
 import { Activity, ArrowRight, ArrowRightLeft, Building2, CheckCircle2, ChevronRight, CircleHelp, ClipboardList, Database, Diamond, Download, FileCheck2, FileText, History, Home, LayoutGrid, LockKeyhole, Network, RotateCcw, Search, Settings2, ShieldCheck, Sparkles, Wrench, X, type LucideIcon } from 'lucide-react';
 import type { Commit, EntityKind, Impact, Page, Store } from './types';
@@ -92,7 +94,7 @@ export default function App() {
   const data = store.data;
   return <div className="app-shell">
     <aside className="sidebar">
-      <button className="brand" onClick={() => navigate('home')} aria-label="DIAMS Tools par UTAC, accueil"><img className="utac-logo" src="/utac-logo.png" alt="UTAC" /><span className="brand-product">DIAMS<span className="brand-tools">tools</span></span></button>
+      <button className="brand" onClick={() => navigate('home')} aria-label="DIAMS Tools par UTAC, accueil"><img className="utac-logo" src={`${import.meta.env.BASE_URL}utac-logo.png`} alt="UTAC" /><span className="brand-product">DIAMS<span className="brand-tools">tools</span></span></button>
       <div className="workspace-label">ESPACE ADMINISTRATEUR</div>
       <nav aria-label="Navigation principale">
         <button className={`nav-item ${nav.page === 'home' ? 'active' : ''}`} onClick={() => navigate('home')}><LayoutGrid size={18} />Vue d’ensemble</button>
